@@ -39,7 +39,22 @@ That's it. Skip to [Daily Use](#daily-use) below.
 
 ---
 
-### Option B — Manual setup (Mac, Linux, or Windows terminal)
+### Option B — One-command setup (Mac / Linux)
+
+1. **Download or clone this folder** to your machine.
+2. In Terminal, run:
+
+```bash
+./setup.sh
+```
+
+The script checks Docker, asks for your API key (hidden input), builds the image, starts the container, and can launch Claude immediately.
+
+That's it. Skip to [Daily Use](#daily-use) below.
+
+---
+
+### Option C — Manual setup (Mac, Linux, or Windows terminal)
 
 **1. Copy the environment file and add your API key:**
 
@@ -87,6 +102,14 @@ Or on Windows, double-click **`claude.bat`** — it handles starting the contain
 Double-click **`claude.bat`** — it starts the container if needed, checks for updates, and opens Claude Code in a new terminal window.
 
 ### Mac / Linux
+
+```bash
+./claude.sh
+```
+
+`./claude.sh` starts the container if needed, checks for Claude updates, and opens Claude in your current terminal.
+
+If you prefer the direct command:
 
 ```bash
 docker exec -it claude-code claude
@@ -172,6 +195,8 @@ claude-docker-starter/
 ├── .gitignore            Excludes .env and workspace contents from git
 ├── setup.bat             First-time setup wizard (Windows)
 ├── claude.bat            Daily launcher (Windows)
+├── setup.sh              First-time setup script (Mac/Linux)
+├── claude.sh             Daily launcher script (Mac/Linux)
 └── workspace/            Your project files — mounted at /workspace in the container
 ```
 
@@ -193,7 +218,7 @@ claude-docker-starter/
 
 ## Troubleshooting
 
-**`Docker is not running`** — Open Docker Desktop and wait for it to finish starting before running setup or claude.bat.
+**`Docker is not running`** — Open Docker Desktop and wait for it to finish starting before running setup (`setup.bat` / `setup.sh`) or launch (`claude.bat` / `claude.sh`).
 
 **`claude: command not found` inside the container** — The PATH may not include `~/.local/bin`. Run:
 ```bash
