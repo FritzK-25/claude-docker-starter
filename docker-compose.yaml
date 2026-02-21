@@ -1,0 +1,25 @@
+services:
+  claude:
+    build: .
+    container_name: claude-code
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+
+    volumes:
+      - ./workspace:/workspace          # your project files go here
+      - claude_home:/home/node/.claude  # persists Claude settings and session history
+
+    env_file:
+      - .env                            # your ANTHROPIC_API_KEY goes in .env
+
+    # Uncomment ports if you need to access a dev server running inside the container
+    # ports:
+    #   - "3000:3000"   # generic web server
+    #   - "5173:5173"   # Vite dev server
+    #   - "8000:8000"   # Python / other
+
+    command: ["sleep", "infinity"]
+
+volumes:
+  claude_home:
